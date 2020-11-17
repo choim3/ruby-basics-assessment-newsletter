@@ -51,6 +51,7 @@ def print_recipients
   # Ex) "abc@email.com, def@email.com, ghi@email.com"
   email_list = calculate_recipients.join(", ")
   puts email_list
+  email_list
 end
 
 def print_one_article(article)
