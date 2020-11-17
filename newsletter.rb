@@ -28,11 +28,20 @@ ARTICLES = [
 #########################
 
 def calculate_recipients
-  # Using the SUBSCRIBERS and UNSUBSCRIBED arrays,
-  # write a method that will return an array of only the subscribers who haven't unsubscribed
+  new_array = SUBSCRIBERS
+  i = 0
+  while i < SUBSCRIBERS.length do
+    if new_array.include?(UNSUBSCRIBED[i])
+      new_array.delete(UNSUBSCRIBED[i])
+    end
+    i += 1
+  end
+  new_array
 end
 
-def first_n_articles(number_of_articles
+
+
+def first_n_articles(number_of_articles)
   ARTICLES.first(number_of_articles)
 end
 
@@ -40,6 +49,8 @@ def print_recipients
   # Write a method that uses the output of calculate_recipients
   # and returns a list of emails separated by commas
   # Ex) "abc@email.com, def@email.com, ghi@email.com"
+  email_list = calculate_recipients.join(" ")
+  p email_list
 end
 
 def print_one_article(article)
@@ -54,8 +65,9 @@ def print_many_articles(articles)
 end
 
 def format_campus_location(campus)
-  "Flatiron #{campus["name"]}"
+  "Flatiron #{CAMPUS[:name]}"
 end
+
 
 def format_subject
   puts "#{format_campus_location(CAMPUS)} Newsletter - #{DATE}\n\n"
@@ -79,8 +91,6 @@ def print_newsletter(number)
   articles = first_n_articles(number)
   print_many_articles(articles)
   puts format_footer(CAMPUS)
-
-  end
 end
 
 def run
